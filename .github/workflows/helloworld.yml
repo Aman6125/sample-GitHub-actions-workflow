@@ -1,14 +1,18 @@
-name: "hello world workflow"
-#
+name: hello world workflow
+
 on:
   push:
-   branches:
-    - master
-    - production
+    branches:
+      - main
+  workflow_dispatch: # allows manual trigger from GitHub UI
 
 jobs:
-  hello_world:
-    runs-on: ubuntu-lastest
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: "print hello world"
-        run: ehco "hello world"
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Run Hello World
+        run: echo "Hello, GitHub Actions is working!"
